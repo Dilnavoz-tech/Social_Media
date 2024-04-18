@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
     path('auth/', include('authorization.urls')),
-    path('accounts/login/', login_view, name='login'),  # Correct the URL pattern here
+    path('accounts/login/', login_view, name='login'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
