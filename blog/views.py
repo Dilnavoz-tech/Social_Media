@@ -47,7 +47,6 @@ def home_view(request):
 def search_view(request):
     text = request.GET.get('q')
     text = text.lower()
-    print(text)
     if text:
         user = MyUser.objects.filter(user__username=text).first()
         if user:
@@ -71,10 +70,7 @@ def profile_view(request, pk):
     posts = Post.objects.filter(user__id=myuser.id)
     followers = len(Follow.objects.filter(following=myuser))
     following = len(Follow.objects.filter(follower=myuser))
-    return render(request, 'profile.html', {'myuser': myuser,
-                                            'posts': posts,
-                                            'followers': followers,
-                                            'following': following})
+    return render(request, 'profile.html', {'myuser': myuser, 'posts': posts, 'followers': followers, 'following': following})
 
 
 def like_view(request, pk):
@@ -94,8 +90,6 @@ def accaunt_settings_view(request):
         image = request.FILES.get('image')
         first_name = request.POST.get('first_name')
         username = request.POST.get('username')
-        print(image)
-        print(first_name)
         if image:
             myuser.image = image
             myuser.save()
